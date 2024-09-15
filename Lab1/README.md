@@ -19,11 +19,11 @@ Astefel prin acest exercitu noi am intrat în bazele porgramari orientate pe obi
 
 
 
-#Exerciții suplimentare
+# Exerciții suplimentare
 
 Acest proiect are că scop folosire operartiilor de baza în operarea cu calsele în programarea orientarta pe obiect
 
-#Descriere
+## Descriere
 
 1.Moștenirea în OOP
   Prin utilizarea claselor Vehicle și Car am demostrat principiul de moștenire în oop.
@@ -32,6 +32,6 @@ Acest proiect are că scop folosire operartiilor de baza în operarea cu calsele
 3.Metoda Friend
   Prin clasa BankAccount noi am putut demonstra fucntionarea unei metode friend
 
-##Cocluzie 
+## Cocluzie 
 Prin acesete exerciți noi am demostrat și testat principiile programri orientate pe obiect
 
