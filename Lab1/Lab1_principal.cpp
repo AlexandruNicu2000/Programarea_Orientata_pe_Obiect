@@ -2,94 +2,96 @@
 #include <vector>
 #include <string>
 
-using namespace std;
-
 class Book {
-    private:
-        string Title;
-        string Author;
-        string ISBN;
-    public:
+private:
+    std::string title;
+    std::string author;
+    std::string ISBN;
 
-    Book(std::string_view t, std::string_view a, std::string_view i): Title(t), Author(a), ISBN(i) {}
+public:
+    Book(std::string  t, std::string  a, std::string  i): title(std::move(t)), author(std::move(a)), ISBN(std::move(i)) {};
 
+    std::string get_title() {
+        return title;
+    }
+    std::string get_Author() {
+        return author;
+    }
+    std::string get_ISBN() {
+        return ISBN;
+    }
 
-        string getTitle() const {
-            return Title;
-        }
-        string getAuthor() const {
-            return Author;
-        }
-        string getISBN() const {
-            return ISBN;
-        }
+    void displayBook() const{
+        std::cout << "Title: " << title <<" ,Author: "<< author << " ,ISBN: "<< ISBN<< std::endl;
 
-        void displayBook() const {
-            cout << "Titlu: " << Title << ", Autor: " << Author << ", ISBN: " << ISBN << endl;
-        }
+    }
+
 };
 
 class Library {
-    private:
-        vector<Book> books;
-    public:
-        void addBook(const Book& book) {
-            books.push_back(book);
-        }
+private:
+    std::vector<Book> books;
+public:
 
-        void deleteBook(const string& isbn) {
-            for(auto it = books.begin(); it != books.end(); ++it) {
-                if(it->getISBN() == isbn) {
-                    cout<<"Cartea "<<it->getTitle()<<" a fost staersa"<<endl;
-                    books.erase(it);
-                }
+    void addBook(const Book& book) {
+        books.push_back(book);
+    }
+
+    void deleteBook(const std::string& isbn) {
+        for(auto it = books.begin(); it != books.end(); ++it) {
+            if(it->get_ISBN() == isbn) {
+                books.erase(it);
+                break;
             }
         }
-        void displayLibrary() const {
-            cout << "Books:" << endl;
-                for (const auto& book : books) {
-                    book.displayBook();
-                }
+    }
+
+    void displayBooks() const {
+        for(const auto& book : books) {
+            book.displayBook();
         }
+    }
 };
 
-void displayMenu() {
-    cout << "\nMeniu:" << endl;
-    cout << "1. Adauga o carte" << endl;
-    cout << "2. Afisează lista de carti" << endl;
-    cout << "3. Sterge o carte după ISBN" << endl;
-    cout << "4. Iesi din program" << endl;
+void showMenu() {
+    std::cout << "Library Menu:\n";
+    std::cout << "1. Add a book\n";
+    std::cout << "2. Delete a book\n";
+    std::cout << "3. Display all books\n";
+    std::cout << "4. Exit\n";
+    std::cout << "Enter your choice: ";
 }
-void addBookLibrary(Library& library) {
-    string title, author, isbn;
-    cout << "Introdu titlul cartii: ";
-    cin.ignore();
-    getline(cin, title);
-    cout << "Introdu autorul cartii: ";
-    getline(cin, author);
-    cout << "Introdu ISBN-ul cartii: ";
-    getline(cin, isbn);
-    Book newBook(title, author, isbn);
-    library.addBook(newBook);
 
+void addBookToLibrary(Library& library) {
+    std::string title, author, isbn;
+    std::cout << "Enter title: ";
+    std::cin.ignore();
+    std::getline(std::cin, title);
+    std::cout << "Enter author: ";
+    std::getline(std::cin, author);
+    std::cout << "Enter ISBN: ";
+    std::getline(std::cin, isbn);
+    library.addBook(Book(title, author, isbn));
 }
-void removeBookLibrary(Library& library) {
-    string isbn;
-    cout << "Introdu ISBN-ul cartii: ";
-    cin.ignore();
-    getline(cin, isbn);
+void deleteBookFromLibrary(Library& library) {
+    std::string isbn;
+    std::cout << "Enter ISBN of the book to delete: ";
+    std::cin.ignore();
+    std::getline(std::cin, isbn);
     library.deleteBook(isbn);
 }
-int main() {
-    Library library;
-    int option;
-    bool running = true;
 
-    Book book1("Crima si pedeapsa", "Fiodor Dostoievski", "1112223334");
-    Book book2("Don Quijote", "Miguel de Cervantes", "2223334445");
-    Book book3("Mandrie si prejudecata", "Jane Austen", "3334445556");
-    Book book4("Marile sperante", "Charles Dickens", "4445556667");
-    Book book5("Razboi si pace", "Lev Tolstoi", "5556667778");
+
+int main() {
+
+    Library library;
+    int choice;
+
+    Book book1("Crime and Punishment", "Fyodor Dostoevsky", "1112223334");
+    Book book2("Don Quixote", "Miguel de Cervantes", "2223334445");
+    Book book3("Pride and Prejudice", "Jane Austen", "3334445556");
+    Book book4("Great Expectations", "Charles Dickens", "4445556667");
+    Book book5("War and Peace", "Leo Tolstoy", "5556667778");
 
     library.addBook(book1);
     library.addBook(book2);
@@ -97,34 +99,30 @@ int main() {
     library.addBook(book4);
     library.addBook(book5);
 
-    library.displayLibrary();
+    std::cout << "Books from library" << std::endl;
+    library.displayBooks();
 
+    do {
+        showMenu();
+        std::cin >> choice;
 
-
-    while (running) {
-        displayMenu();
-        cin >> option;
-
-        switch (option) {
+        switch (choice) {
             case 1:
-                addBookLibrary(library);
+                addBookToLibrary(library);
             break;
-
             case 2:
-                library.displayLibrary();
+                deleteBookFromLibrary(library);
             break;
-
             case 3:
-                removeBookLibrary(library);
+                std::cout << "Books in the library:\n";
+            library.displayBooks();
             break;
-
             case 4:
-                running = false;
+                std::cout << "Exiting...\n";
             break;
-
             default:
-                cout << "Optiune invalida" << endl;
-            break;
+                std::cout << "Invalid choice. Please try again.\n";
         }
-    }
+    } while (choice != 4);
 }
+
