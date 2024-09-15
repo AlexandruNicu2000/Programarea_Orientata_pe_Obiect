@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
 
-class Vehicul {
+class Vehicle {
 public:
-    Vehicul(const std::string& marca) : marca_(marca) {}
+    Vehicle(const std::string& mark) : marca_(mark) {}
 
-    void afiseazaMarca() const {
+    void displayMark() const {
         std::cout << "Marca vehiculului: " << marca_ << std::endl;
     }
 
@@ -14,11 +14,11 @@ protected:
 };
 
 
-class Masina : public Vehicul {
+class Car : public Vehicle {
 public:
-    Masina(const std::string& marca, int an) : Vehicul(marca), an_(an) {}
+    Car(const std::string& marca, int year) : Vehicle(marca), an_(year) {}
 
-    void afiseazaDetalii() const {
+    void displayVehicleDetails() const {
         std::cout << "Masina " << marca_ << " este din anul " << an_ << std::endl;
     }
 
@@ -27,50 +27,50 @@ private:
 };
 
 
-class Persoana {
+class Person {
 public:
-    Persoana(const std::string& nume, int varsta)
-        : nume_(nume), varsta_(varsta) {
-        std::cout << "Constructor pentru " << nume_ << ", " << varsta_ << " ani.\n";
+    Person(const std::string& name, int age)
+        : nume_(name), age_(age) {
+        std::cout << "Constructor pentru " << nume_ << ", " << age_ << " ani.\n";
     }
 
-    ~Persoana() {
+    ~Person() {
         std::cout << "Destructor pentru " << nume_ << ".\n";
     }
 
 private:
     std::string nume_;
-    int varsta_;
+    int age_;
 };
 
-class ContBancar {
+class BankAccount {
 public:
-    ContBancar(const std::string& nume, double sold)
-        : nume_(nume), sold_(sold) {}
+    BankAccount(const std::string& name, double balance)
+        : nume_(name), sold_(balance) {}
 
-    friend void afiseazaDetalii(const ContBancar& cont);
+    friend void displayBankDetails(const BankAccount& cont);
 
 private:
     std::string nume_;
     double sold_;
 };
 
-void afiseazaDetalii(const ContBancar& cont) {
+void displayBankDetails(const BankAccount& cont) {
     std::cout << "Nume: " << cont.nume_ << "\n";
     std::cout << "Sold: " << cont.sold_ << "\n";
 }
 
 int main() {
-    Vehicul vehicul("General");
-    Masina masina("Dacia", 2023);
+    Vehicle vehicul("General");
+    Car masina("Dacia", 2023);
 
-    vehicul.afiseazaMarca();
-    masina.afiseazaDetalii();
-
-
-    Persoana p("Ion", 30);
+    vehicul.displayMark();
+    masina.displayVehicleDetails();
 
 
-    ContBancar cont("Ana", 1500.0);
-    afiseazaDetalii(cont);
+    Person p("Ion", 30);
+
+
+    BankAccount cont("Ana", 1500.0);
+    displayBankDetails(cont);
 }
