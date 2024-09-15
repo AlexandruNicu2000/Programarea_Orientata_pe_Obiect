@@ -25,11 +25,11 @@ Acest proiect are că scop folosire operartiilor de baza în operarea cu calsele
 
 ## Descriere
 
-1.Moștenirea în OOP
+-Moștenirea în OOP: 
   Prin utilizarea claselor Vehicle și Car am demostrat principiul de moștenire în oop.
-2.Constructori/Destructori
+-Constructori/Destructori: 
   Prin clasa Person noi am reprezentat funcționarea constructurilor și destructorilor în oop.
-3.Metoda Friend
+3-Metoda Friend: 
   Prin clasa BankAccount noi am putut demonstra fucntionarea unei metode friend
 
 ## Cocluzie 
