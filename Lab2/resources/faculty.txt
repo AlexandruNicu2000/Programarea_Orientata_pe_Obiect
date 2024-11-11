@@ -1,0 +1,10 @@
+CIM,Calculatoare Informatica Microelectronica,Enginirie
+ETC,Electronica Telecomunicații,Enginirie
+EIE,Energetică Inginerie Electrică,Enginirie
+IMIT,Inginerie Mecanică Industrială Transporturi,Enginirie
+IEB,Inginerie Economică Business,Enginirie
+UA,Urbanism Arhitectură,Enginirie
+TP,Textile Poligrafie,Enginirie
+IB,Inginerie Biomedicală,Enginirie
+CGC,Construcții Geodezie Cadastru,Enginirie
+TA,Tehnologia Alimentelor,Enginirie
